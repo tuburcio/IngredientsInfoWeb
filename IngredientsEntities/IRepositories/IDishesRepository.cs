@@ -14,7 +14,8 @@ namespace IngredientsEntities.IRepositories
         void AddDish(DishDTO newDish);
         void AddIngredientToDish(int dishId, IngredientDTO newIngredient);
         void RemoveIngredientFromDish(int dishId, int ingredientId);
-        void RemoveDish(int dishId);
         IEnumerable<AllergenDTO> GetAllergensFromDish(int id);
+        void RemoveDish(int id);
+        void UpdateDish(DishDTO modifiedDish);
     }
 }

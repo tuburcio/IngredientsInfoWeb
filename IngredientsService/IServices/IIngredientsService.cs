@@ -9,11 +9,13 @@ namespace IngredientsService.IServices
 {
     public interface IIngredientsService
     {
-        IngredientsViewModel GetIngredient(int id);
-        IEnumerable<IngredientsViewModel> GetIngredients();
-        void AddIngredient(IngredientsViewModel ingredient);
+        IngredientViewModel GetIngredient(int id);
+        IEnumerable<IngredientViewModel> GetIngredients();
+        void AddIngredient(IngredientViewModel ingredient);
         void AddAllergen(int ingredientId, AllergenViewModel newAllergen);
         void RemoveAllergen(int ingredientId, AllergenViewModel allergen);
         IEnumerable<AllergenViewModel> GetAllergensForIngredient(int id);
+        void RenameIngredient(int id, string newName);
+        void DeleteIngredient(int id);
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace IngredientsEntities.Repositories
 {
@@ -91,9 +92,14 @@ namespace IngredientsEntities.Repositories
             return null;
         }
 
-        public void RemoveDish(int dishId)
+        public void RemoveDish(int id)
         {
-            throw new NotImplementedException();
+            var dish = this.dbContext.Dishes.SingleOrDefault(x => x.Id == id);
+            if (dish != null)
+            {
+                this.dbContext.Dishes.Remove(dish);
+                this.dbContext.SaveChanges();
+            }
         }
 
         public void RemoveIngredientFromDish(int dishId, int ingredientId)
@@ -105,6 +111,17 @@ namespace IngredientsEntities.Repositories
             if (ingredient != null)
             {
                 dish.Ingredients.Remove(ingredient);
+                this.dbContext.SaveChanges();
+            }
+        }
+
+        public void UpdateDish(DishDTO modifiedDish)
+        {
+            var entry = AutoMapper.Mapper.Map<Dish>(modifiedDish);
+            var attachedentry = this.dbContext.Dishes.Find(entry.Id);
+            if (attachedentry != null)
+            {
+                ((DbContext)this.dbContext).Entry(attachedentry).CurrentValues.SetValues(entry);
                 this.dbContext.SaveChanges();
             }
         }

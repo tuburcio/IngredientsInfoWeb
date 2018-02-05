@@ -37,13 +37,34 @@ namespace IngredientsInfoWeb.Controllers
         [Route("{id:int}/allergens")]
         public IHttpActionResult GetAllergensForDishById(int id)
         {
-            return Ok(dishesService.GerAllergenForDishById(id));
+            return Ok(dishesService.GerAllergenFromDishById(id));
         }
 
         [HttpPost]
         public IHttpActionResult AddDish([FromBody] DishViewModel newDishViewModel)
         {
             this.dishesService.AddDish(newDishViewModel);
+            return Ok();
+        }
+
+        [HttpPut]
+        public IHttpActionResult ModifyDish(int id, [FromBody]DishViewModel name)
+        {
+            if (name == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                this.dishesService.RenameDish(id, name.Name);
+            }
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteDish(int id)
+        {
+            this.dishesService.DeleteDish(id);
             return Ok();
         }
 

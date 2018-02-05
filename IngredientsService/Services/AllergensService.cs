@@ -21,6 +21,11 @@ namespace IngredientsService.Services
             }
         }
 
+        public void DeleteAllergen(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public AllergenViewModel GetAllergen(int id)
         {
             var result = this.allergensRepository.GetAllergen(id);
@@ -38,6 +43,16 @@ namespace IngredientsService.Services
             var result = this.allergensRepository.GetDishesForAllergen(allergenId);
 
             return AutoMapper.Mapper.Map<IEnumerable<DishViewModel>>(result);
+        }
+
+        public void RenameAllergen(int id, AllergenViewModel allergen)
+        {
+            if (allergen != null)
+            {
+                allergen.Id = id;
+                this.allergensRepository.UpdateAllergen(
+                    AutoMapper.Mapper.Map<AllergenDTO>(allergen));
+            }
         }
     }
 }

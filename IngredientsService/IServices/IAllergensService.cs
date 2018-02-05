@@ -13,5 +13,7 @@ namespace IngredientsService.IServices
         IEnumerable<DishViewModel> GetDishesWithAllergen(int allergenId);
         IEnumerable<AllergenViewModel> GetAllergens();
         AllergenViewModel GetAllergen(int id);
+        void RenameAllergen(int id, AllergenViewModel allergen);
+        void DeleteAllergen(int id);
     }
 }

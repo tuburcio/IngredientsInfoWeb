@@ -27,10 +27,15 @@ namespace IngredientsService.Services
             }
         }
 
-        public void AddIngredient(IngredientsViewModel ingredient)
+        public void AddIngredient(IngredientViewModel ingredient)
         {
             var newIngredient = AutoMapper.Mapper.Map<IngredientDTO>(ingredient);
             this.ingredientsRepository.AddIngredient(newIngredient);
+        }
+
+        public void DeleteIngredient(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerable<AllergenViewModel> GetAllergensForIngredient(int id)
@@ -38,22 +43,33 @@ namespace IngredientsService.Services
             throw new NotImplementedException();
         }
 
-        public IngredientsViewModel GetIngredient(int id)
+        public IngredientViewModel GetIngredient(int id)
         {
             var ingredient = this.ingredientsRepository.GetIngredientById(id);
-            return AutoMapper.Mapper.Map<IngredientsViewModel>(ingredient);
+            return AutoMapper.Mapper.Map<IngredientViewModel>(ingredient);
         }
 
-        public IEnumerable<IngredientsViewModel> GetIngredients()
+        public IEnumerable<IngredientViewModel> GetIngredients()
         {
             var ingredients = this.ingredientsRepository.GetIngredients();
-            return AutoMapper.Mapper.Map<IEnumerable<IngredientsViewModel>>(ingredients);
+            return AutoMapper.Mapper.Map<IEnumerable<IngredientViewModel>>(ingredients);
         }
 
         public void RemoveAllergen(int ingredientId, AllergenViewModel allergen)
         {
             var ingredient = this.ingredientsRepository.GetIngredientById(ingredientId);
 
+        }
+
+        public void RenameIngredient(int id, string newName)
+        {
+            var ingredient = this.ingredientsRepository.GetIngredientById(id);
+            if (ingredient != null)
+            {
+                ingredient.Name = newName;
+                this.ingredientsRepository.UpdateIngredient(
+                    AutoMapper.Mapper.Map<IngredientDTO>(ingredient));
+            }
         }
     }
 }

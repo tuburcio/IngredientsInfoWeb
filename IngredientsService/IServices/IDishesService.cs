@@ -12,14 +12,16 @@ namespace IngredientsService.IServices
 
         DishViewModel GetDish(int id);
 
-        IEnumerable<IngredientsViewModel> GetIngredientsForDish(int id);
+        IEnumerable<IngredientViewModel> GetIngredientsFromDish(int id);
 
-        IEnumerable<AllergenViewModel> GerAllergenForDishById(int id);
+        IEnumerable<AllergenViewModel> GerAllergenFromDishById(int id);
 
         void AddDish(DishViewModel newDish);
 
         void RemoveIngredientFromDish(int dishId, int ingredientId);
 
-        void AddIngredientForDish(int dishId, IngredientsViewModel newIngredient);
+        void AddIngredientToDish(int dishId, IngredientViewModel newIngredient);
+        void RenameDish(int id, string newName);
+        void DeleteDish(int id);
     }
 }

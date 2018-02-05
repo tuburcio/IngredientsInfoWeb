@@ -2,6 +2,7 @@
 using IngredientsEntities.Entities;
 using IngredientsEntities.IRepositories;
 using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,7 +35,7 @@ namespace IngredientsEntities.Repositories
         public AllergenDTO GetAllergenByName(string name)
         {
             var allergen = this.dbContext.Allergens.FirstOrDefault(x => x.Name == name);
-            if(allergen != null)
+            if (allergen != null)
             {
                 return AutoMapper.Mapper.Map<AllergenDTO>(allergen);
             }
@@ -63,6 +64,27 @@ namespace IngredientsEntities.Repositories
         public void ModifyAllergen(AllergenDTO updatedAllergen)
         {
             throw new NotImplementedException();
+        }
+
+        public void RemoveAllergen(int id)
+        {
+            var allergen = this.dbContext.Allergens.SingleOrDefault(x => x.Id == id);
+            if (allergen != null)
+            {
+                this.dbContext.Allergens.Remove(allergen);
+                this.dbContext.SaveChanges();
+            }
+        }
+
+        public void UpdateAllergen(AllergenDTO modifiedAllergen)
+        {
+            var entry = AutoMapper.Mapper.Map<Allergen>(modifiedAllergen);
+            var attachedentry = this.dbContext.Allergens.Find(entry.Id);
+            if (attachedentry != null)
+            {
+                ((DbContext)this.dbContext).Entry(attachedentry).CurrentValues.SetValues(entry);
+                this.dbContext.SaveChanges();
+            }
         }
     }
 }

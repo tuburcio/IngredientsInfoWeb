@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IngredientsService", "Ingre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IngredientsEntities", "IngredientsEntities\IngredientsEntities.csproj", "{4F657BC6-1037-4A3F-8643-5E50E4900C2F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IngredientsInfo.DistSvc", "IngredientsInfo.DistSvc\IngredientsInfo.DistSvc.csproj", "{8569E8B4-CF04-4D3B-8454-73193C9DF6AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{4F657BC6-1037-4A3F-8643-5E50E4900C2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F657BC6-1037-4A3F-8643-5E50E4900C2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F657BC6-1037-4A3F-8643-5E50E4900C2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8569E8B4-CF04-4D3B-8454-73193C9DF6AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8569E8B4-CF04-4D3B-8454-73193C9DF6AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8569E8B4-CF04-4D3B-8454-73193C9DF6AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8569E8B4-CF04-4D3B-8454-73193C9DF6AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

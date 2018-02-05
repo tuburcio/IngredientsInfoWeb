@@ -82,14 +82,24 @@ namespace IngredientsInfoWeb.Controllers
 
         [HttpPut]
         [Route("{id:int}")]
-        public IHttpActionResult Put(int id, [FromBody]string value)
+        public IHttpActionResult ModifyAllergen(int id, [FromBody] AllergenViewModel allergen) 
         {
+            if (allergen == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                this.allergensService.RenameAllergen(id, allergen);
+            }
             return Ok();
         }
 
-        // DELETE: api/Allergens/5
-        public void Delete(int id)
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
         {
+            this.allergensService.DeleteAllergen(id);
+            return Ok();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using IngredientsEntities.IRepositories;
+﻿using IngredientsEntities.DTO;
+using IngredientsEntities.IRepositories;
 using IngredientsService.IServices;
 using IngredientsService.ViewModels;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace IngredientsService.Services
 {
-    public class DishesService :IDishesService
+    public class DishesService : IDishesService
     {
         private readonly IDishesRepository dishesRepository;
         public DishesService(IDishesRepository newDishesRepository)
@@ -23,19 +24,14 @@ namespace IngredientsService.Services
         }
 
 
-        public IEnumerable<AllergenViewModel> GerAllergenForDishById(int id)
+        public IEnumerable<AllergenViewModel> GerAllergenFromDishById(int id)
         {
             return AutoMapper.Mapper.Map<IEnumerable<AllergenViewModel>>(this.dishesRepository.GetAllergensFromDish(id));
         }
 
-        public void AddIngredient(int dishId, IngredientsViewModel newIngredient)
+        public void AddIngredientToDish(int dishId, IngredientViewModel newIngredient)
         {
-            
-        }
-
-        public void AddIngredientForDish(int dishId, IngredientsViewModel newIngredient)
-        {
-            throw new NotImplementedException();
+            this.dishesRepository.AddIngredientToDish(dishId, AutoMapper.Mapper.Map<IngredientDTO>(newIngredient));
         }
 
         public DishViewModel GetDish(int id)
@@ -48,14 +44,35 @@ namespace IngredientsService.Services
             return AutoMapper.Mapper.Map<IEnumerable<DishViewModel>>(this.dishesRepository.GetDishes().ToList());
         }
 
-        public IEnumerable<IngredientsViewModel> GetIngredientsForDish(int id)
+        public IEnumerable<IngredientViewModel> GetIngredientsFromDish(int id)
         {
-            throw new NotImplementedException();
+            var ingredients = this.dishesRepository.GetDish(id);
+            if (ingredients != null)
+            {
+                return AutoMapper.Mapper.Map<IEnumerable<IngredientViewModel>>(ingredients.Ingredients);
+            }
+            return null;
         }
 
         public void RemoveIngredientFromDish(int dishId, int ingredientId)
         {
             this.dishesRepository.RemoveIngredientFromDish(dishId, ingredientId);
+        }
+
+        public void DeleteDish(int id)
+        {
+            this.dishesRepository.RemoveDish(id);
+        }
+
+        public void RenameDish(int id, string newName)
+        {
+            var dish = this.dishesRepository.GetDish(id);
+            if (dish != null)
+            {
+                dish.Name = newName;
+                this.dishesRepository.UpdateDish(
+                    AutoMapper.Mapper.Map<DishDTO>(dish));
+            }
         }
     }
 }

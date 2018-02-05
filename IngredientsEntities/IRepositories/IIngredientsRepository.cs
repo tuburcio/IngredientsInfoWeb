@@ -15,5 +15,7 @@ namespace IngredientsEntities.IRepositories
         IEnumerable<AllergenDTO> GetAllergens(int ingredientId);
         void RemoveAllergen(int ingredientId, AllergenDTO allergen);
         void AddAllergen(int ingredientId, AllergenDTO allergen);
+        void RemoveIngredient(int id);
+        void UpdateIngredient(IngredientDTO modifiedIngredient);
     }
 }

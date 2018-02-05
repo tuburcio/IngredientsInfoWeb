@@ -35,7 +35,7 @@ namespace IngredientsInfoWeb.Controllers
 
         [HttpPost]
         [Route("")]
-        public IHttpActionResult Post([FromBody]IngredientsViewModel value)
+        public IHttpActionResult Post([FromBody]IngredientViewModel value)
         {
             if (value == null)
             {
@@ -64,14 +64,23 @@ namespace IngredientsInfoWeb.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult Put(int id, [FromBody]string value)
+        public IHttpActionResult RenameIngredient(int id, [FromBody]IngredientViewModel name)
         {
+            if(name == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                this.ingredientsService.RenameIngredient(id, name.Name);
+            }
             return Ok();
         }
 
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
+            this.ingredientsService.DeleteIngredient(id);
             return Ok();
         }
     }
