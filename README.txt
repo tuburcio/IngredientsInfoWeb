@@ -26,9 +26,11 @@ TODO:
 		Check if there are not implemented methods.
 		Refactor some methods based on templates.
 		If we want to implement a tracker of changes made in the Db, we could just install the
-			nuget package enabled-tracker-dbcontext which stores every change made on the db in 
-			desired entities or add a migration adding our entities 3 fields, ActionType, User 
-			and ActionDate. We could also make an approach based on stored procedures.
+			nuget package tracker-enabled-dbcontext which stores every change made on the db in 
+			desired entities (it stores the changes in the db depending on the current thread 
+			culture, which need to be fixed, easy to do), or add a migration adding our entities 
+			3 fields, ActionType, User and ActionDate. We could also make an approach based on 
+			stored procedures.
 		Summarize the whole project.
 		Unit Testing.
 -	IngredientsService:
