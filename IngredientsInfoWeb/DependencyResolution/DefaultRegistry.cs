@@ -16,6 +16,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace IngredientsInfoWeb.DependencyResolution {
+    using StructureMap;
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
 	
@@ -30,10 +31,8 @@ namespace IngredientsInfoWeb.DependencyResolution {
                     scan.Assembly("IngredientsEntities");
                     scan.TheCallingAssembly();
                     scan.WithDefaultConventions();
+					scan.With(new ControllerConvention());
                 });
-            //For<IngredientsService.IServices.IDishesService>().Use<IngredientsService.Services.DishesService>();
-            //For<IngredientsService.IServices.IAllergensService>().Use<IngredientsService.Services.AllergensService>();
-            //For<IngredientsService.IServices.IIngredientsService>().Use<IngredientsService.Services.IngredientsService>();
             //For<IExample>().Use<Example>();
         }
 

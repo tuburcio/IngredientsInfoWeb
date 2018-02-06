@@ -26,10 +26,6 @@ namespace IngredientsInfoWeb.App_Start {
         public static void Start() {
 			var container = StructuremapMvc.StructureMapDependencyScope.Container;
             GlobalConfiguration.Configuration.DependencyResolver = new StructureMapWebApiDependencyResolver(container);
-            ObjectFactory.Initialize(x =>
-            {
-                //x.For<IIngredientsInfoService>().Use<IngredientsInfoService>();
-            });
         }
     }
 }
