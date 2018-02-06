@@ -38,8 +38,8 @@ TODO:
 		Summarize the whole project.
 		Unit Testing.
 -	IngredientsInfoWeb:
-		Add the URL to the responses to make the API be self descriptive. Add XML output and input
-			formatters.
+		Add the URL to the responses through a helper to make the API be self descriptive. Add XML output and input
+			formatters as optional.
 		Add pagination.
 		Add the possibility to decide the consumer whether or not include sub entities with a
 			parameter on the query string.
